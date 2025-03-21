@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toxic Comment Classifier</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background: #ffffff; /* White background */
+            color: #333; /* Dark text */
+        }
+
+        .container {
+            width: 40%;
+            margin: 100px auto;
+            background: #f8f9fa; /* Light grey for contrast */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #2D6A4F; /* Dark green */
+            margin-bottom: 15px;
+        }
+
+        /* Text Input */
+        textarea {
+            width: calc(100% - 24px);
+            height: 90px;
+            padding: 12px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 2px solid #74C69D; /* Green border */
+            background: #ffffff;
+            color: #333;
+            resize: none;
+            outline: none;
+        }
+
+        /* Submit Button */
+        button {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 12px;
+            border: none;
+            border-radius: 5px;
+            background: #40916C; /* Green button */
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+        }
+
+        button:hover {
+            background: #2D6A4F; /* Darker green */
+            transform: scale(1.05);
+        }
+
+        /* Prediction Result */
+        #result {
+            margin-top: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 10px;
+            border-radius: 5px;
+            display: none;
+        }
+
+        .toxic {
+            background: #D90429; /* Strong red */
+            color: white;
+        }
+
+        .not-toxic {
+            background: #38B000; /* Strong green */
+            color: white;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                width: 85%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Toxic Comment Classifier</h1>
+        <form id="predictionForm">
+            <textarea id="textInput" name="text" placeholder="Type your comment here..."></textarea><br>
+            <button type="submit">Analyze</button>
+        </form>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        document.getElementById("predictionForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent form from reloading the page
+
+            var text = document.getElementById("textInput").value;
+            if (!text) {
+                document.getElementById("result").innerText = "⚠️ Please enter a comment!";
+                document.getElementById("result").style.display = "block";
+                document.getElementById("result").className = "";
+                return;
+            }
+
+            fetch("/predict", {
+                method: "POST",
+                body: new FormData(document.getElementById("predictionForm"))
+            })
+            .then(response => response.json())
+            .then(data => {
+                var resultElement = document.getElementById("result");
+                if (data.prediction == 1) {
+                    resultElement.innerText = "☠️ Toxic Comment";
+                    resultElement.className = "toxic";
+                } else {
+                    resultElement.innerText = "✅ Not Toxic";
+                    resultElement.className = "not-toxic";
+                }
+                resultElement.style.display = "block";
+            })
+            .catch(error => {
+                document.getElementById("result").innerText = "❌ Error: " + error;
+                document.getElementById("result").style.display = "block";
+                document.getElementById("result").className = "";
+            });
+        });
+    </script>
+</body>
+</html>
