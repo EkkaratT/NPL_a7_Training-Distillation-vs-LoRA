@@ -134,6 +134,7 @@ We evaluate the models trained using Odd Layers, Even Layers, and LoRA based on 
 | Odd Layer Distillation  | 0.1818        | 93.16%       |
 | Even Layer Distillation | 0.1810        | 93.68%       |
 | LoRA Fine-Tuning       | 0.2364        | 80.76%       |
+
 All three models take approximately the same amount of time to train.
 
 ### Performance Analysis
