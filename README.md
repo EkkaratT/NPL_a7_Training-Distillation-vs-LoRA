@@ -182,7 +182,9 @@ a simple web application that classifies whether a given text input is toxic or 
 
 ### ✅ Features
 ✔️ **User Input Box** – Users can enter text for classification.
+
 ✔️ **Real-Time Prediction** – The model classifies input as toxic or non-toxic.
+
 ✔️ **Pretrained Model** – Uses the best fine-tuned model (**Even-Layer Distilled BERT**).
 
 ### 🔥 Example:
