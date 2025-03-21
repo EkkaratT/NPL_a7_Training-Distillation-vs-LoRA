@@ -1,8 +1,6 @@
 # NPL_a7_Training-Distillation-vs-LoRA
 
-# 🚀 Toxic Comment Classification: Training Distillation vs. LoRA
-
-This project compares **Odd Layer and Even Layer Student Training Models** with **LoRA (Low-Rank Adaptation)** on a toxic comment classification task using **BERT** from Hugging Face. The goal is to evaluate different model compression techniques while maintaining classification performance.
+In this assignment, we will compare **Odd Layer and Even Layer Student Training Models** with **LoRA (Low-Rank Adaptation)** on a toxic comment classification task using **BERT** from Hugging Face. The goal is to evaluate different model compression techniques while maintaining classification performance.
 
 ---
 
@@ -60,7 +58,7 @@ peft_config = LoraConfig(
     lora_dropout=0.1  
 )
 ```
-- **Trainable Parameters**: 0.27% of the total model
+- **Trainable Parameters**: 0.27% of the total model (trainable params: 294,912)
 - **Total Parameters**: 109M
 - **Efficient training with minimal compute requirements**
 
@@ -94,6 +92,8 @@ peft_config = LoraConfig(
 
 ## 🌍 Web Application
 
+a simple web application that classifies whether a given text input is toxic or hate speech.
+
 ### ✅ Features
 ✔️ **User Input Box** – Users can enter text for classification.
 ✔️ **Real-Time Prediction** – The model classifies input as toxic or non-toxic.
@@ -102,6 +102,13 @@ peft_config = LoraConfig(
 ### 🔥 Example:
 **Input**: "I hate you"
 **Output**: "Toxic"
+
+![1](https://github.com/user-attachments/assets/fa7e9982-567c-45f4-895d-71445f93788f)
+![2](https://github.com/user-attachments/assets/dfdd8d6c-f353-4602-aa80-691c066d0450)
+![3](https://github.com/user-attachments/assets/da59b691-62b8-4fee-95a1-83f4f266a01a)
+![4](https://github.com/user-attachments/assets/218ee753-0b10-4866-99a2-f3d20f5fe083)
+![5](https://github.com/user-attachments/assets/22a57aaf-b695-4e76-8904-4cd303b875ac)
+![6](https://github.com/user-attachments/assets/81dcffcd-53fd-4221-b55e-072a1aefe9c2)
 
 ---
 
